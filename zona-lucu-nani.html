@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Zona Lucu & Cinta Nani</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom right, #fffbe9, #ffddee);
+      font-family: "Comic Sans MS", sans-serif;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      margin-top: 50px;
+      font-size: 36px;
+      color: #ff69b4;
+    }
+
+    .blink {
+      font-size: 24px;
+      color: hotpink;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .runaway-btn {
+      background-color: lightcoral;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 18px;
+      border-radius: 20px;
+      position: absolute;
+      top: 200px;
+      left: 50%;
+      transform: translateX(-50%);
+      cursor: pointer;
+      transition: top 0.3s, left 0.3s;
+    }
+
+    .typing {
+      font-size: 20px;
+      margin-top: 80px;
+      color: #ff1493;
+      min-height: 30px;
+    }
+
+    .heart {
+      position: fixed;
+      top: -50px;
+      width: 30px;
+      height: 30px;
+      background-color: pink;
+      transform: rotate(45deg);
+      animation: fall 6s linear infinite;
+    }
+
+    .heart::before, .heart::after {
+      content: "";
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background-color: pink;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -15px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -15px;
+      top: 0;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-50px) rotate(45deg); }
+      100% { transform: translateY(100vh) rotate(45deg); }
+    }
+
+    audio {
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Zona Lucu & Cinta Nani 💖</h1>
+
+  <div class="blink">nani cantik imut dan lucu ✨</div>
+
+  <button class="runaway-btn" onclick="runAway(this)">Klik Aku Kalau Bisa 😜</button>
+
+  <div class="typing" id="typingText"></div>
+
+  <audio controls autoplay loop>
+    <source src="https://dl.dropboxusercontent.com/scl/fi/72qqzeo7zy9sw2xt8ehqa/Thank-God-I-Found-You.mp3?rlkey=sdzvvo63rjjh27mkg9n81nv3i&dl=0" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    function runAway(button) {
+      const x = Math.random() * (window.innerWidth - 100);
+      const y = Math.random() * (window.innerHeight - 50);
+      button.style.left = x + 'px';
+      button.style.top = y + 'px';
+    }
+
+    const text = "Aku sayang kamu... makasih ya udah selalu nemenin 🥺💖";
+    let i = 0;
+    function typing() {
+      if (i < text.length) {
+        document.getElementById("typingText").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typing, 70);
+      }
+    }
+    typing();
+
+    // Create falling hearts
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = Math.random() * 3 + 3 + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }, 300);
+  </script>
+</body>
+</html>
